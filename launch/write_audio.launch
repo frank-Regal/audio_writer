@@ -1,0 +1,16 @@
+<launch>
+    <!-- Load parameters from YAML file -->
+    <rosparam file="$(find audio_writer)/params/params.yaml" command="load"/>
+
+    <!-- user inputs -->
+    <arg name="path" default="$(find audio_writer)/data"/>
+    <arg name="name" default="output"/>
+
+    <!-- set params -->
+    <param name="output_directory" value="$(arg path)" />
+    <param name="postfix" value="$(arg name)" />
+
+    <!--launch save_bags node -->
+    <node name="save_raw_audio_stream" pkg="audio_writer" type="save_raw_audio_stream" output="screen"/>
+
+</launch>
