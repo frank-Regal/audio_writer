@@ -1,16 +1,22 @@
 <launch>
-    <!-- Load parameters from YAML file -->
-    <rosparam file="$(find audio_writer)/params/params.yaml" command="load"/>
+    <group ns="audio_writer">
+        <!-- Load parameters from YAML file -->
+        <rosparam file="$(find audio_writer)/params/params.yaml" command="load"/>
 
-    <!-- user inputs -->
-    <arg name="path" default="$(find audio_writer)/data"/>
-    <arg name="name" default="output"/>
+        <!-- user inputs -->
+        <arg name="path" default="$(find audio_writer)/data"/>
+        <arg name="name" default="output"/>
+        <arg name="topic" default="/hololens/microphone/data"/>
+        <arg name="downsample" default="false"/>
 
-    <!-- set params -->
-    <param name="output_directory" value="$(arg path)" />
-    <param name="postfix" value="$(arg name)" />
+        <!-- set params -->
+        <param name="output_directory_" value="$(arg path)" />
+        <param name="postfix_" value="$(arg name)" />
+        <param name="topic_name_" value="$(arg topic)" />
+        <param name="queue_size_" value="100"/>
+        <param name="downsample_" value="$(arg downsample)"/>
 
-    <!--launch save_bags node -->
-    <node name="save_raw_audio_stream" pkg="audio_writer" type="save_raw_audio_stream" output="screen"/>
-
+        <!--launch save_bags node -->
+        <node name="save_raw_audio_stream" pkg="audio_writer" type="save_raw_audio_stream" output="screen"/>
+    </group>
 </launch>

@@ -1,0 +1,12 @@
+audio_writer:
+
+  input:
+    audio_encoding: float
+    sample_rate: 96000
+    channels: 1
+
+  output:
+    audio_encoding: pcm_16
+    sample_rate: 16000
+  
+
