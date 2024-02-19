@@ -16,6 +16,9 @@
         <param name="queue_size_" value="100"/>
         <param name="downsample_" value="$(arg downsample)"/>
 
+        <param name="start_recording_topic_" value="/hololens/natural_input_capture/start"/>
+        <param name="stop_recording_topic_" value="/hololens/natural_input_capture/stop"/>
+
         <!--launch save_bags node -->
         <node name="save_raw_audio_stream" pkg="audio_writer" type="save_raw_audio_stream" output="screen"/>
     </group>
