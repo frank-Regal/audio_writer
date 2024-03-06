@@ -1,4 +1,22 @@
 <launch>
+
+    <!-- input args -->
+    <arg name="connect_rf_client" default='false'/>
+
+    <!-- robofleet client group -->
+    <group if="$(arg connect_rf_client)" ns="audio_writer_rf_client"> 
+
+        <!--launch robofleet with desired config file-->
+        <arg name="rf_cfg" default="$(env HRI_CACTI_XR_PATH)/robofleet/hl-ss-config.yaml"/>
+	    <node
+	    	name    = "robofleet_client"
+	    	pkg     = "robofleet_client"
+	    	type    = "client"
+	    	output  = "screen"
+	    	args	= "$(arg rf_cfg)"
+	    />
+    </group>
+
     <group ns="audio_writer">
         <!-- Load parameters from YAML file -->
         <rosparam file="$(find audio_writer)/params/params.yaml" command="load"/>
